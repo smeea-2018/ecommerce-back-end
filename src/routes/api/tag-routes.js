@@ -38,14 +38,14 @@ router.get("/:id", (req, res) => {
 
 router.post("/", (req, res) => {
   // create a new tag
-   try {
-    const {tag_name} = req.body;
+  try {
+    const { tag_name } = req.body;
 
     // insert category in the DB
-    const newTag = await Category.create({tag_name});
+    const newTag = Tag.create({ tag_name });
     return res.json(newTag);
   } catch (error) {
-    console.log(`[ERROR]: Failed to create new category | ${error.message}`);
+    console.log(`[ERROR]: Failed to create new tag | ${error.message}`);
     return res.status(500).json({
       message: "Internal server error",
     });
@@ -56,7 +56,7 @@ router.put("/:id", (req, res) => {
   // update a tag's name by its `id` value
   try {
     const { id } = req.params;
-    const tag = await Tag.findByPk(id);
+    const tag = Tag.findByPk(id);
 
     if (!tag) {
       return res.status(404).json({ message: "Tag not found" });
@@ -66,20 +66,18 @@ router.put("/:id", (req, res) => {
     if (!tag_name) {
       return res.status(500).json({ message: "Unable to update tag" });
     }
-    await Tag.update({ tag_name }, { where: { id } });
+    Tag.update({ tag_name }, { where: { id } });
 
     return res.status(200).json({ message: "Tag updated" });
   } catch (error) {
     console.error(`ERROR | ${error.message}`);
     return res.status(500).json(error);
   }
-
-
 });
 
 router.delete("/:id", (req, res) => {
   // delete on tag by its `id` value
-    Tag.destroy({
+  Tag.destroy({
     where: {
       id: req.params.id,
     },
@@ -89,6 +87,5 @@ router.delete("/:id", (req, res) => {
     })
     .catch((err) => res.json(err));
 });
-
 
 module.exports = router;

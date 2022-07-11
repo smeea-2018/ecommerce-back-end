@@ -35,34 +35,25 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", (req, res) => {
   // update a category by its `id` value
-  Category.update(
-    {
-      // All the fields you can update and the data attached to the request body.
-      title: req.body.title,
-      author: req.body.author,
-      isbn: req.body.isbn,
-      pages: req.body.pages,
-      edition: req.body.edition,
-      is_paperback: req.body.is_paperback,
-    },
-    {
-      // Gets the books based on the isbn given in the request parameters
-      where: {
-        isbn: req.params.isbn,
-      },
-    }
-  );
+  try {
+    const { id } = req.params;
+    const category = Category.findByPk(id);
 
-  Category.create({
-    category_name: req.body.category_name,
-  })
-    .then((newCategory) => {
-      // Send the newly created row as a JSON object
-      res.json(newCategory);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
+    if (!category) {
+      return res.status(404).json({ message: "Category not found" });
+    }
+
+    const { category_name } = req.body;
+    if (!category_name) {
+      return res.status(500).json({ message: "Unable to update tag" });
+    }
+    Category.update({ category_name }, { where: { id } });
+
+    return res.status(200).json({ message: "Category updated" });
+  } catch (error) {
+    console.error(`ERROR | ${error.message}`);
+    return res.status(500).json(error);
+  }
 });
 
 router.delete("/:id", (req, res) => {
