@@ -35,6 +35,24 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", (req, res) => {
   // update a category by its `id` value
+  Category.update(
+    {
+      // All the fields you can update and the data attached to the request body.
+      title: req.body.title,
+      author: req.body.author,
+      isbn: req.body.isbn,
+      pages: req.body.pages,
+      edition: req.body.edition,
+      is_paperback: req.body.is_paperback,
+    },
+    {
+      // Gets the books based on the isbn given in the request parameters
+      where: {
+        isbn: req.params.isbn,
+      },
+    }
+  );
+
   Category.create({
     category_name: req.body.category_name,
   })
