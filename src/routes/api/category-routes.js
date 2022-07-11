@@ -24,7 +24,6 @@ router.post("/", async (req, res) => {
 
     // insert category in the DB
     const newCategory = await Category.create({ category_name });
-    console.log("category added");
     return res.json(newCategory);
   } catch (error) {
     console.log(`[ERROR]: Failed to create new category | ${error.message}`);

@@ -38,6 +38,18 @@ router.get("/:id", (req, res) => {
 
 router.post("/", (req, res) => {
   // create a new tag
+   try {
+    const {tag_name} = req.body;
+
+    // insert category in the DB
+    const newTag = await Category.create({tag_name});
+    return res.json(newTag);
+  } catch (error) {
+    console.log(`[ERROR]: Failed to create new category | ${error.message}`);
+    return res.status(500).json({
+      message: "Internal server error",
+    });
+  }
 });
 
 router.put("/:id", (req, res) => {
