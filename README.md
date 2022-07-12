@@ -63,9 +63,9 @@ MIT
 
 The following videos show the web application's appearance and functionality:
 
-<a href = "">Watch Video </a>
+<a href = "https://drive.google.com/file/d/1BjozLES7_hBKrQZtHlheslSrLttZcm6h/view">Watch Video </a>
 
-![ecommerce functionality demonstration]()
+![ecommerce functionality demonstration](./ecommerce-backend.gif)
 
 ## Contact Me:
 
