@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f5b64348-bb43-4b7f-b9ff-7b154291916e",
+		"_postman_id": "d93730f1-7a7d-478b-88b5-f2f081df5066",
 		"name": "ecommerce-back-end-collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "18748929"
@@ -16,7 +16,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": " {\r\n      \"product_name\": \"Traditional Coat\",\r\n      \"price\": \"200.00\",\r\n      \"stock\": \"3\",\r\n      \"tagIds\": \"[1, 2, 3, 4]\"\r\n    }",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -24,7 +24,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4000/api/categories",
+					"raw": "http://localhost:4000/api/categories/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -32,7 +32,8 @@
 					"port": "4000",
 					"path": [
 						"api",
-						"categories"
+						"categories",
+						"1"
 					],
 					"query": [
 						{
@@ -109,7 +110,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4000/api/categories/8",
+					"raw": "http://localhost:4000/api/categories/6",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -118,7 +119,7 @@
 					"path": [
 						"api",
 						"categories",
-						"8"
+						"6"
 					]
 				}
 			},
@@ -147,9 +148,21 @@
 		},
 		{
 			"name": "getAllProducts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:4000/api/products",
 					"protocol": "http",
@@ -187,42 +200,13 @@
 			"response": []
 		},
 		{
-			"name": "CreateProduct",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n      \"product_name\": \"Basketball\",\r\n      \"price\": 200.00,\r\n      \"stock\": \"3\",\r\n      \"tagIds\": \"[1, 2, 3, 4]\"\r\n    }",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:4000/api/products",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "4000",
-					"path": [
-						"api",
-						"products"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "updateProduct",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\"product_name\": \"poloshirt\",\r\n \"tagIds\": [5]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -260,7 +244,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4000/api/products/7",
+					"raw": "http://localhost:4000/api/products/6",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -269,7 +253,7 @@
 					"path": [
 						"api",
 						"products",
-						"7"
+						"6"
 					]
 				}
 			},
@@ -403,6 +387,77 @@
 						"api",
 						"tags",
 						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCategoryById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/categories/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"categories",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getProductById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/products/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"products",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createProduct",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \r\n      \"product_name\": \"shirt\",\r\n      \"price\": 200.00,\r\n      \"stock\": 3,\r\n      \"tagIds\": [1, 2, 3, 4], \r\n    \"category_id\": 1\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"products"
 					]
 				}
 			},

@@ -74,9 +74,14 @@ router.put("/:id", (req, res) => {
       id: req.params.id,
     },
   })
-    .then((product) => {
-      // find all associated tags from ProductTag
-      return ProductTag.findAll({ where: { product_id: req.params.id } });
+
+    .then((updateStatus) => {
+      if (updateStatus[0] > 0) {
+        // find all associated tags from ProductTag
+        return ProductTag.findAll({ where: { product_id: req.params.id } });
+      } else {
+        res.json("Nothing to update").status(204);
+      }
     })
     .then((productTags) => {
       // get list of current tag_ids
